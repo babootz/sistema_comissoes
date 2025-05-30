@@ -13,7 +13,17 @@ from utils import (
 
 # --- Configuração Inicial ---
 st.set_page_config(page_title="Sistema de Comissões", layout="wide", initial_sidebar_state="collapsed")
-load_css("styles.css")
+import streamlit as st
+import os
+
+def load_css():
+    # Cria o caminho para o arquivo CSS dentro da pasta static
+    css_path = os.path.join("static", "styles.css")
+    with open(css_path) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+load_css()
+
 initialize_data_files()
 
 # --- Estado da Aplicação ---
