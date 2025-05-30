@@ -28,6 +28,7 @@ def baixar_arquivo(data, nome_arquivo):
     b64 = base64.b64encode(data).decode()
     href = f'<a href="data:application/octet-stream;base64,{b64}" download="{nome_arquivo}">Clique aqui para baixar</a>'
     return href
+
 import streamlit as st
 
 def load_css(file_name):
