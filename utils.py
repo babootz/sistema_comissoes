@@ -3,7 +3,8 @@ import os
 from datetime import datetime
 import streamlit as st
 import base64
-from weasyprint import HTML, CSS
+from xhtml2pdf import pisa
+from io import BytesIO
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import pandas as pd # Import pandas here if needed for date conversion in PDF
 
@@ -172,11 +173,11 @@ def generate_pending_commissions_pdf(comissoes):
     try:
         html_content = template.render(context)
         # Use WeasyPrint para gerar o PDF em memória
-        pdf_bytes = HTML(string=html_content).write_pdf()
+        pdf_bytes = pdf = BytesIO()
+pisa.CreatePDF(BytesIO(html_content.encode('utf-8')), dest=pdf)
+pdf.getvalue()
         return pdf_bytes
     except Exception as e:
         st.error(f"Erro ao gerar o PDF: {e}")
         log_action("Erro Geração PDF", str(e))
         return None
-
-
