@@ -3,11 +3,13 @@ import pandas as pd
 from datetime import datetime
 import copy # Needed for deep copies when editing
 from utils import (
-    initialize_data_files, load_comissoes, save_comissoes, 
-    log_action, authenticate, load_css, calcular_comissao_liquida, 
-    calcular_saldo_pendente, load_history,
-    generate_pending_commissions_pdf # Importar a função de gerar PDF
+    gerar_pdf,
+    dataframe_para_html,
+    salvar_excel,
+    carregar_excel,
+    baixar_arquivo,
 )
+
 
 # --- Configuração Inicial ---
 st.set_page_config(page_title="Sistema de Comissões", layout="wide", initial_sidebar_state="collapsed")
