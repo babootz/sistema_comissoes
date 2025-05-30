@@ -2,4 +2,3 @@ streamlit
 pandas
 openpyxl
 xhtml2pdf
-Jinja2
