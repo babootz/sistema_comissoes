@@ -24,8 +24,6 @@ def load_css():
 
 load_css()
 
-initialize_data_files()
-
 # --- Estado da Aplicação ---
 if 'logged_in' not in st.session_state:
     st.session_state.logged_in = False
