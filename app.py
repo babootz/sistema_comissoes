@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 import copy # Needed for deep copies when editing
-#from utils import (
+from utils import (
     initialize_data_files, load_comissoes, save_comissoes, 
     log_action, authenticate, load_css, calcular_comissao_liquida, 
     calcular_saldo_pendente, load_history,
