@@ -1,0 +1,175 @@
+/* styles.css */
+
+/* --- Geral --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; /* Cinza claro de fundo */
+}
+
+.stApp {
+    background-color: #f0f2f5;
+}
+
+/* --- Tela de Login --- */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh; /* Ajustar altura conforme necessário */
+}
+
+.login-box {
+    background-color: #ffffff; /* Branco */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px; /* Largura fixa para o box */
+}
+
+.login-box h1 {
+    color: #1d3557; /* Azul escuro */
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.login-box p {
+    color: #457b9d; /* Azul médio */
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+/* Estilo para o input de senha */
+.stTextInput input[type="password"] {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%; /* Ocupa toda a largura do container */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+}
+
+/* Botão de Login */
+.stButton button {
+    background-color: #457b9d; /* Azul médio */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Ocupa toda a largura */
+    margin-top: 15px;
+}
+
+.stButton button:hover {
+    background-color: #1d3557; /* Azul escuro */
+}
+
+.stButton button:active {
+    background-color: #0d1b2a; /* Azul mais escuro */
+}
+
+/* Mensagem de erro */
+.stAlert {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- Tela Principal --- */
+
+/* Título Principal */
+h1 {
+ color: #1d3557; /* Azul escuro */
+ text-align: center;
+ margin-bottom: 30px;
+}
+
+/* Subtítulos e Seções */
+h2 {
+ color: #1d3557; /* Azul escuro */
+ border-bottom: 2px solid #a8dadc; /* Azul claro */
+ padding-bottom: 5px;
+ margin-top: 30px;
+ margin-bottom: 20px;
+}
+
+/* Botões Gerais */
+.stButton button {
+    background-color: #457b9d; /* Azul médio */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 5px; /* Espaçamento entre botões */
+}
+
+.stButton button:hover {
+    background-color: #1d3557; /* Azul escuro */
+}
+
+/* Botão de Excluir (vermelho) */
+.stButton button.delete-button {
+    background-color: #e63946; /* Vermelho */
+}
+
+.stButton button.delete-button:hover {
+    background-color: #c1121f; /* Vermelho escuro */
+}
+
+/* Botão de Download/PDF (verde) */
+.stButton button.download-button, a.download-button {
+    background-color: #2a9d8f; /* Verde azulado */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Para links */
+    display: inline-block; /* Para links */
+    margin: 5px;
+}
+
+.stButton button.download-button:hover, a.download-button:hover {
+    background-color: #264653; /* Verde escuro */
+    color: white;
+}
+
+/* Estilo para Dataframe */
+.stDataFrame {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Melhorar aparência dos inputs e selects */
+.stTextInput input, .stNumberInput input, .stSelectbox select, .stDateInput input {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
+}
+
+/* Checkbox */
+.stCheckbox label {
+    font-size: 14px;
+}
+
+/* Links */
+a {
+    color: #457b9d;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1d3557;
+    text-decoration: underline;
+}
+
+
