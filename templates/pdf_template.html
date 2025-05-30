@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Comissões Pendentes</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1.5cm;
+            @bottom-right {
+                content: "Página " counter(page) " de " counter(pages);
+                font-family: 'Helvetica', sans-serif;
+                font-size: 9pt;
+                color: #777;
+            }
+        }
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: 10pt;
+            color: #333;
+            line-height: 1.4;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #1d3557; /* Azul escuro */
+            padding-bottom: 10px;
+        }
+        .header h1 {
+            color: #1d3557; /* Azul escuro */
+            font-size: 20pt;
+            margin: 0;
+        }
+        .header p {
+            color: #457b9d; /* Azul médio */
+            font-size: 9pt;
+            margin-top: 5px;
+        }
+        .total-section {
+            background-color: #e9ecef; /* Cinza claro */
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        .total-section h2 {
+            margin: 0;
+            font-size: 12pt;
+            color: #1d3557;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        .total-value {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #e63946; /* Vermelho para destacar pendência */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th {
+            background-color: #457b9d; /* Azul médio */
+            color: white;
+            font-weight: bold;
+            text-align: left;
+            padding: 8px 10px;
+            font-size: 9pt;
+            border: 1px solid #3a6a8a;
+        }
+        td {
+            padding: 7px 10px;
+            border: 1px solid #dee2e6; /* Cinza borda tabela */
+            font-size: 9pt;
+            vertical-align: top;
+        }
+        tr:nth-child(even) td {
+            background-color: #f8f9fa; /* Cinza bem claro para linhas pares */
+        }
+        .money {
+            text-align: right;
+            white-space: nowrap;
+        }
+        .pending {
+            font-weight: bold;
+            color: #e63946; /* Vermelho */
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 8pt;
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Relatório de Comissões Pendentes</h1>
+        <p>Gerado em: {{ data_geracao }}</p>
+    </div>
+
+    <div class="total-section">
+        <h2>Total Geral Pendente</h2>
+        <div class="total-value">R$ {{ "{:,.2f}".format(total_pendente).replace(',', 'v').replace('.', ',').replace('v', '.') }}</div>
+    </div>
+
+    {% if comissoes %}
+    <table>
+        <thead>
+            <tr>
+                <th>Segurado</th>
+                <th>Placa</th>
+                <th>Seguradora</th>
+                <th>Data Efetivação</th>
+                <th class="money">Comissão Líquida</th>
+                <th class="money">Saldo Pendente</th>
+                <th>Obs</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comissao in comissoes %}
+            <tr>
+                <td>{{ comissao.segurado }}</td>
+                <td>{{ comissao.placa }}</td>
+                <td>{{ comissao.seguradora }}</td>
+                <td>
+                    {% if comissao.data_efetivacao %}
+                        {% set dt = comissao.data_efetivacao %}
+                        {% if dt is string %}
+                            {% set dt_obj = modules.datetime.strptime(dt, '%Y-%m-%d') %}
+                            {{ dt_obj.strftime('%d/%m/%Y') }}
+                        {% elif dt is object and hasattr(dt, 'strftime') %}
+                            {{ dt.strftime('%d/%m/%Y') }}
+                        {% else %}
+                            {{ dt }}
+                        {% endif %}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td class="money">R$ {{ "{:,.2f}".format(comissao.comissao_liquida).replace(',', 'v').replace('.', ',').replace('v', '.') }}</td>
+                <td class="money pending">R$ {{ "{:,.2f}".format(comissao.saldo_pendente).replace(',', 'v').replace('.', ',').replace('v', '.') }}</td>
+                <td>{{ comissao.obs }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p style="text-align: center; margin-top: 20px;">Não há comissões com saldo pendente no momento.</p>
+    {% endif %}
+
+    <div class="footer">
+        Sistema de Gerenciamento de Comissões
+    </div>
+</body>
+</html>
